@@ -71,14 +71,14 @@ export default function Home() {
   return (
     <RootPortfolio>
       <BoxItem>
-        {/* <video
+        <video
           autoPlay
           // controls
           loop
           style={stylesVideo}
         >
-          <source src='https://www.youtube.com/watch?v=CvdDD3BKW2Y&t=2049s' />
-        </video> */}
+          <source src='/videoHome.mp4' />
+        </video>
         <TypoTitlePageHome variant='h1'>
           Bienvenue sur le Blog du Voyage
         </TypoTitlePageHome>
@@ -116,7 +116,7 @@ export default function Home() {
       >
         {slideImgsHome.map((item, _id) => (
           <div style={{ border: "4px solid #FFF" }} key={_id}>
-            <Image alt="" height={350} src={item} width={350} />
+            <Image alt='' height={350} src={item} width={350} />
           </div>
         ))}
       </Carousel>
