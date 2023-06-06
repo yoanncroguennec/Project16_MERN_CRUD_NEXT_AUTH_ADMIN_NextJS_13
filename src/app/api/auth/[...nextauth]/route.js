@@ -48,9 +48,9 @@ const handler = NextAuth({
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     }),
   ],
-  // pages: {
-  //   error: "/pages/dashboard/login",
-  // },
+  pages: {
+    error: "/pages/dashboard/login",
+  },
 });
 
 export { handler as GET, handler as POST };

@@ -1,15 +1,24 @@
 import { Typography } from '@mui/material';
 import React from 'react'
-import styles from "./page.module.css";
 import { signIn } from 'next-auth/react';
 
 
-export default function LoginEmail({ error }) {
+export default function LoginEmail({ error, stylesBtn }) {
   const stylesForm = {
-    width: "300px",
     display: "flex",
     flexDirection: "column",
     gap: "20px",
+    width: "300px",
+  };
+
+  const stylesInput = {
+    background: "transparent",
+    border: "2px solid #bbb",
+    color: "#bbb",
+    borderRadius: "5px",
+    fontSize: "20px",
+    fontWeight: "bold",
+    padding: "20px",
   };
 
   const handleSubmit = (e) => {
@@ -29,22 +38,17 @@ export default function LoginEmail({ error }) {
         <strong>
           <u>Démo :</u>
         </strong>{" "}
-        yoann.croguennec@gmail.com/95449544
+        yoann.croguennec@gmail.com / 95449544
       </Typography>
       <form onSubmit={handleSubmit} style={stylesForm}>
-        <input
-          type='text'
-          placeholder='Email'
-          required
-          className={styles.input}
-        />
+        <input type='text' placeholder='Email' required style={stylesInput} />
         <input
           type='password'
           placeholder='Password'
           required
-          className={styles.input}
+          style={stylesInput}
         />
-        <button className={styles.button}>Login</button>
+        <button style={stylesBtn}>Login</button>
         {error && error}
       </form>
     </div>

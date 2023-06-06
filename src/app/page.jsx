@@ -8,44 +8,52 @@ import Hero from "public/hero.png";
 import Button from "@/app/components/layouts/btn/Button";
 import { useEffect } from "react";
 import Link from "next/link";
-import { Box, Typography, styled } from "@mui/material";
+import { Box, Typography, styled, useMediaQuery, useTheme } from "@mui/material";
 
 // import { DefaultPlayer as Video } from "react-html5video";
 // import "react-html5video/dist/styles.css";
 
 
 const slideImgsHome = [
-  "assets/imgs/home/1.jpg",
-  "assets/imgs/home/2.jpg",
-  "assets/imgs/home/3.jpg",
-  "assets/imgs/home/4.jpg",
-  "assets/imgs/home/5.jpg",
-  "assets/imgs/home/6.jpg",
-  "assets/imgs/home/7.jpg",
-  "assets/imgs/home/8.jpg",
+  "/assets/imgs/home/1.jpg",
+  "/assets/imgs/home/2.jpg",
+  "/assets/imgs/home/3.jpg",
+  "/assets/imgs/home/4.jpg",
+  "/assets/imgs/home/5.jpg",
+  "/assets/imgs/home/6.jpg",
+  "/assets/imgs/home/7.jpg",
+  "/assets/imgs/home/8.jpg",
 ];
 
 
 //////////////////// EXPORT FUNCTION ////////////////////
 export default function Home() {
+  //////////////////// RESPONSIVES ////////////////////
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.up("md"));
+
   //////////////////// STYLES ////////////////////
   const RootPortfolio = styled(Box)(({ theme }) => ({
+    alignItems: "center",
     display: "flex",
     alignItems: "center",
-    gap: "100px",
-    [theme.breakpoints.down("sm")]: {},
+    flexWrap: "nowrap",
+    // gap: "100px",
+    [theme.breakpoints.down("sm")]: {
+      flexDirection: "column",
+    },
   }));
 
   const BoxItem = styled(Box)(({ theme }) => ({
-    flex: "1",
-    display: "flex",
-    flexDirection: "column",
-    gap: "50px",
+    // flex: "1",
+    // display: "flex",
+    // flexDirection: "column",
+    // gap: "50px",
   }));
 
   const stylesVideo = {
-    width: "700px",
-    height: "700px",
+    width: `${matches ? "700px" : "380px"}`,
+    height: `${matches ? "700px" : "380px"}`,
   };
 
   const TypoTitlePageHome = styled(Typography)(({ theme }) => ({
@@ -79,10 +87,10 @@ export default function Home() {
         >
           <source src='/videoHome.mp4' />
         </video>
-        <TypoTitlePageHome variant='h1'>
+        <TypoTitlePageHome variant={matches ? "h1" : "h3"}>
           Bienvenue sur le Blog du Voyage
         </TypoTitlePageHome>
-        <TypoDescHome variant='h5'>
+        <TypoDescHome variant={matches ? "h5" : "h6"}>
           A travers ce Blog, vous y trouverez la partie Catégorie des diffèrents
           thèmes du voyages. Et vous pourrez créer un compte ou vous identifiez
           pour partagez vos différentes aventures dans la partie Blog. Le voyage
@@ -94,29 +102,27 @@ export default function Home() {
           </BoxBtnLinkPortfolio>
         </Link>
       </BoxItem>
-      {/* <div className={styles.item}>
-        <Image src={Hero} alt='' className={styles.img} />
-      </div> */}
 
       <Carousel
         autoPlay={true}
         infiniteLoop={true}
         showIndicators={false}
-        useKeyboardArrows={false}
-        autoFocus={false}
-        centerMode={false}
-        dynamicHeight={true}
-        emulateTouch={false}
-        preventMovementUntilSwipeScrollTolerance={true}
-        showArrows={false}
         showStatus={false}
-        showThumbs={true}
-        stopOnHover={false}
-        swipeable={false}
+        // centerMode={false}
+        // useKeyboardArrows={false}
+        // autoFocus={false}
+        // dynamicHeight={true}
+        // emulateTouch={false}
+        // preventMovementUntilSwipeScrollTolerance={false}
+        // showArrows={false}
+
+        // showThumbs={true}
+        // stopOnHover={false}
+        // swipeable={false}
       >
         {slideImgsHome.map((item, _id) => (
           <div style={{ border: "4px solid #FFF" }} key={_id}>
-            <Image alt='' height={350} src={item} width={350} />
+            <Image alt='' height={150} src={item} width={50} />
           </div>
         ))}
       </Carousel>

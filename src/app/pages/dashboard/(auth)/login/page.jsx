@@ -2,21 +2,22 @@
 
 import React, { useEffect, useState } from "react";
 import { Box, Typography, styled } from "@mui/material";
-
-import styles from "./page.module.css";
-import { signIn, useSession } from "next-auth/react";
-import { useRouter, useSearchParams } from "next/navigation";
+// NEXT
 import Link from "next/link";
+import { useRouter, useSearchParams } from "next/navigation";
+// NEXT-AUTH
+import { signIn, useSession } from "next-auth/react";
+
 import LoginEmail from "./LoginEmail";
 
 //////////////////// EXPORT FUNCTION ////////////////////
 export default function Login() {
   //////////////////// STYLES ////////////////////
   const RootLogin = styled(Box)(({ theme }) => ({
-    display: "flex",
     alignItems: "center",
+    display: "flex",
     flexDirection: "column",
-    gap: "20px",
+    justifyContent: "center",
     [theme.breakpoints.down("sm")]: {},
   }));
 
@@ -33,14 +34,19 @@ export default function Login() {
     },
   }));
 
-  TypoLink;
-  const stylesLink = {
-    textDecoration: "underline",
-    // color: "#7d7c7c",
+  const stylesBtn = {
+    background: "#53c28b",
+    border: "none",
+    borderRadius: "5px",
+    color: "#eee",
+    cursor: "pointer",
+    fontWeight: "bold",
+    margin: "5px 0",
+    padding: "20px",
+    width: "300px",
     "&:hover": {
-      background: "#f00",
+      background: "#49b07d",
     },
-    color: "rgb(61, 61, 61)",
   };
 
   const session = useSession();
@@ -69,12 +75,12 @@ export default function Login() {
         Veuillez vous connecter pour voir le tableau de bord.
       </Typo>
 
-      <LoginEmail error={error} />
+      <LoginEmail error={error} stylesBtn={stylesBtn} />
       <button
         onClick={() => {
           signIn("google");
         }}
-        className={styles.button + " " + styles.google}
+        style={stylesBtn}
       >
         Se connecter avec Google
       </button>

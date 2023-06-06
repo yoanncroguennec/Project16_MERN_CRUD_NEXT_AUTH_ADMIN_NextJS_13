@@ -5,14 +5,22 @@ import useSWR from "swr";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import { Typography } from "@mui/material";
+import AddPostDashbord from "./AddPostDashbord";
+import { Box, Typography, styled } from "@mui/material";
 
-
+//////////////////// EXPORT FUNCTION ////////////////////
 export default function Dashboard() {
+  //////////////////// STYLES ////////////////////
+  const RootDashboard = styled(Box)(({ theme }) => ({
+    alignItems: "center",
+    display: "flex",
+    flexDirection: "column",
+    [theme.breakpoints.down("sm")]: {},
+  }));
 
   const session = useSession();
   // console.log(session);
-  
+
   const router = useRouter();
 
   //NEW WAY TO FETCH DATA
@@ -22,86 +30,74 @@ export default function Dashboard() {
     `/api/posts?username=${session?.data?.user.name}`,
     fetcher
   );
-  
-    if (session.status === "loading") {
-      return <p>Loading...</p>;
-    }
 
-    if (session.status === "unauthenticated") {
-      router?.push("/pages/dashboard/login");
-    }
-
-
-const handleSubmit = async (e) => {
-  e.preventDefault();
-  const title = e.target[0].value;
-  const desc = e.target[1].value;
-  const img = e.target[2].value;
-  const content = e.target[3].value;
-
-  try {
-    await fetch("/api/posts", {
-      method: "POST",
-      body: JSON.stringify({
-        title,
-        desc,
-        img,
-        content,
-        username: session.data.user.name,
-      }),
-    });
-    mutate();
-    e.target.reset();
-  } catch (err) {
-    console.log(err);
+  if (session.status === "loading") {
+    return <p>Loading...</p>;
   }
-};
 
-const handleDelete = async (id) => {
-  try {
-    await fetch(`/api/posts/${id}`, {
-      method: "DELETE",
-    });
-    mutate();
-  } catch (err) {
-    console.log(err);
+  if (session.status === "unauthenticated") {
+    router?.push("/pages/dashboard/login");
   }
-};
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const title = e.target[0].value;
+    const desc = e.target[1].value;
+    const img = e.target[2].value;
+    const content = e.target[3].value;
+
+    try {
+      await fetch("/api/posts", {
+        method: "POST",
+        body: JSON.stringify({
+          title,
+          desc,
+          img,
+          content,
+          username: session.data.user.name,
+        }),
+      });
+      mutate();
+      e.target.reset();
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const handleDelete = async (id) => {
+    try {
+      await fetch(`/api/posts/${id}`, {
+        method: "DELETE",
+      });
+      mutate();
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
-    <div className={styles.container}>
-      <div className={styles.posts}>
+    <RootDashboard>
+      <AddPostDashbord handleSubmit={handleSubmit} />
+      <>
         {isLoading
           ? "loading"
-          : data?.map((post) => (
-              <div className={styles.post} key={post._id}>
-                <div className={styles.imgContainer}>
-                  <Image src={post.img} alt='' width={200} height={100} />
+          : data?.map(({ _id, img, title, desc, content }) => (
+              <div key={_id}>
+                <div>
+                  <Image src={img} alt='' width={200} height={100} />
                 </div>
-                <h2 className={styles.postTitle}>{post.title}</h2>
+                <Typography variant='h4'>{title}</Typography>
+                <Typography variant='h4'>{desc}</Typography>
+                <Typography variant='h4'>{content}</Typography>
                 <span
                   className={styles.delete}
-                  onClick={() => handleDelete(post._id)}
+                  onClick={() => handleDelete(_id)}
                 >
                   X
                 </span>
               </div>
             ))}
-      </div>
-      <form className={styles.new} onSubmit={handleSubmit}>
-        <Typography variant="h4">Ajouter une nouvelle publication</Typography>
-        <input type='text' placeholder='Title' className={styles.input} />
-        <input type='text' placeholder='Desc' className={styles.input} />
-        <input type='text' placeholder='Image' className={styles.input} />
-        <textarea
-          placeholder='Content'
-          className={styles.textArea}
-          cols='30'
-          rows='10'
-        ></textarea>
-        <button className={styles.button}>Send</button>
-      </form>
-    </div>
+      </>
+    </RootDashboard>
   );
 }
