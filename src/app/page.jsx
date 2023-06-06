@@ -114,9 +114,9 @@ export default function Home() {
         stopOnHover={false}
         swipeable={false}
       >
-        {slideImgsHome.map((item) => (
-          <div style={{ border: "4px solid #FFF" }}>
-            <img src={item} />
+        {slideImgsHome.map((item, _id) => (
+          <div style={{ border: "4px solid #FFF" }} key={_id}>
+            <Image alt="" height={350} src={item} width={350} />
           </div>
         ))}
       </Carousel>

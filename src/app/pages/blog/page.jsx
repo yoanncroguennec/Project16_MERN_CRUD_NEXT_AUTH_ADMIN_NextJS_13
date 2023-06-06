@@ -51,8 +51,8 @@ const Blog = async () => {
   return (
     <div>
       {data.map((item) => (
-        <RootNavbar>
-          <Link href={`/pages/blog/${item._id}`} key={item.id}>
+        <RootNavbar key={item.id}>
+          <Link href={`/pages/blog/${item._id}`}>
             <div>
               <Image
                 src={item.img}
