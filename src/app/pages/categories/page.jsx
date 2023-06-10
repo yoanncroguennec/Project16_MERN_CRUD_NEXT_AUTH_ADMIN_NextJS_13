@@ -44,13 +44,13 @@ export default function Portfolio() {
         Choisir la catégorie
       </Typography>
       <BoxItems>
-        <Link href='/pages/portfolio/Evasion' className={styles.item}>
+        <Link href='/pages/categories/Evasion' className={styles.item}>
           <TypoTitleItem>S&apos;évader</TypoTitleItem>
         </Link>
-        <Link href='/pages/portfolio/Villages' className={styles.item}>
+        <Link href='/pages/categories/Villages' className={styles.item}>
           <TypoTitleItem>Villages</TypoTitleItem>
         </Link>
-        <Link href='/pages/portfolio/BonsPlans' className={styles.item}>
+        <Link href='/pages/categories/BonsPlans' className={styles.item}>
           <TypoTitleItem>Bon plans</TypoTitleItem>
         </Link>
       </BoxItems>

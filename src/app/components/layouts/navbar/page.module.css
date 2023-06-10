@@ -1,0 +1,135 @@
+.nav {
+    align-items: center;
+    background: #000;
+    color: #FFF;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    min-height: 75px;
+    padding: 1rem;
+    position: fixed;
+    width: 100%;
+    z-index: 999;
+}
+
+.navLinks {
+    align-items: center;
+    display: flex;
+}
+
+.navLink {
+    color: inherit;
+    padding: 0 0.3rem;
+}
+
+.navBurger {
+    background: transparent;
+    border: none;
+    color: inherit;
+    height: 40px;
+    width: 40px;
+}
+
+@media screen and (max-width: 767px) {
+    .navLinks {
+        align-items: center;
+        background: #000;
+        bottom: 0;
+        flex-direction: column;            
+        height: 100vh;
+        justify-content: center;
+        padding: 2rem;
+        position: fixed;
+        right: -100vw;
+        transition: all 0.8s ease-out;
+        visibility: hidden;
+        width: 0;
+    }
+
+    .showNav .navLinks {
+        right: 0;
+        visibility: visible;
+        width: 100vw;
+    }
+
+    .navLink {
+        display: block;
+        font-size: 5vw;
+        padding: 1.5rem;
+    }
+
+    .navBurger {
+        display: block;
+        position: fixed;
+        right: 1rem;
+        top: 1rem;
+    }
+
+    .navBurger:hover {
+        cursor: pointer;
+    }
+
+    .burgerBar,
+    .burgerBar::before,
+    .burgerBar::after {
+        background: #FFF;
+        border-radius: 3px;
+        display: block;
+        height: 3px;
+        position: relative;
+        transition: all 0.5s ease-in-out;
+        width: 40px;
+    }
+
+    .burgerBar,
+    .burgerBar::before,
+    .burgerBar::after {
+        content: " ";
+        left: 0;
+        position: absolute;
+    }
+
+    .burgerBar::before {
+        transform: translateY(-12px);
+    }
+
+    .burgerBar::after {
+        transform: translateY(12px);
+    }
+
+    .showNav .burgerBar::before {
+        transform: rotate(45deg);
+    }
+
+    .showNav .burgerBar::after {
+        transform: rotate(-45deg);
+    }
+
+    /* BONUS - Bar below navbar links  */
+    .navItem::after {
+        background: #FFF;
+        content: "";
+        display: block;
+        margin: 0 auto;
+        height: 1px;
+        width: 3vw;
+    }
+
+    .navItem:last-child::after {
+        display: none;
+    }
+
+    .navItem {
+        transform: translateY(100vh);
+    }
+
+    .showNav .navItem {
+        transform: translateY(0)
+    }
+
+    .showNav .slideInDown1 {
+        font-size: 1.5em;
+        /* color: red; */
+        transition: all 1s ease-out;
+    }
+}

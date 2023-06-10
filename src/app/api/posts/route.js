@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import connect from "../server/config/db";
 import Post from "../server/models/Post";
 
+// http://localhost:3000/api/posts
 export const GET = async (request) => {
   const url = new URL(request.url);
 
@@ -18,6 +19,7 @@ export const GET = async (request) => {
   }
 };
 
+// http://localhost:3000/api/posts
 export const POST = async (request) => {
   const body = await request.json();
 

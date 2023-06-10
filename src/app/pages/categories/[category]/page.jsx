@@ -1,15 +1,14 @@
 "use client";
 
 import React from "react";
-import { Box, Typography, styled } from "@mui/material";
+import { Box, Button, Typography, styled } from "@mui/material";
 import ScrollToTop from "react-scroll-to-top";
-import Button from "@/app/components/layouts/btn/Button";
 // NEXT
 import Image from "next/image";
+import Link from "next/link";
 import { notFound } from "next/navigation"
 // UTILS DATA
-import { dataCategoryPortfolio } from "@/app/utils/data/pages/portfolio/dataCategoryPortfolio";
-import Link from "next/link";
+import { dataCategoryPortfolio } from "@/app/utils/data/pages/categories/dataCategoryPortfolio";
 
 
 const getData = (cat) => {
@@ -64,33 +63,29 @@ const stylesImg = {
         {params.category}
       </TypoTitleCategoryPage>
 
-      {data.map(({ _id, title, desc, image, btnSeeMore }) => (
-        <BoxItem key={_id}>
-          <BoxContent>
-            {/* <Typography>{10 bons plans gratuits à Paris}</Typography> */}
-            <Typography variant='h4'>{title}</Typography>
-            <div
-              dangerouslySetInnerHTML={{ __html: desc }}
-              style={{ fontSize: "1.3em" }}
-            />
-            {btnSeeMore === true && (
-              <Link href="/pages/ggg/[slug]?slug=1">
-{/* 
-              <Link
-                href={{
-                  pathname: "pages/blog/[slug]",
-                  query: { slug: "my-post" },
-                }}
-              > */}
-                <Button text='See More' url='#' />
-              </Link>
-            )}
-          </BoxContent>
-          <BoxImgCategory>
-            <Image alt='' fill={true} src={image} style={stylesImg} />
-          </BoxImgCategory>
-        </BoxItem>
-      ))}
+      {data.map(
+        ({ _id, title, desc, image, btnSeeMore, urlDetailsCategory }) => (
+          <BoxItem key={_id}>
+            <BoxContent>
+              {/* <Typography>{10 bons plans gratuits à Paris}</Typography> */}
+              <Typography variant='h4'>{title}</Typography>
+              {urlDetailsCategory}
+              <div
+                dangerouslySetInnerHTML={{ __html: desc }}
+                style={{ fontSize: "1.3em" }}
+              />
+              {btnSeeMore === true && (
+                <Link href={urlDetailsCategory}>
+                  <Button variant='contained'>Voir Plus...</Button>
+                </Link>
+              )}
+            </BoxContent>
+            <BoxImgCategory>
+              <Image alt='' fill={true} src={image} style={stylesImg} />
+            </BoxImgCategory>
+          </BoxItem>
+        )
+      )}
       <ScrollToTop smooth />
     </div>
   );

@@ -1,36 +1,31 @@
 "use client";
 
-import { Box, Typography, styled } from "@mui/material";
+import React, { useState } from "react";
+import { Box, styled } from "@mui/material";
 //@TIPPYJS/REACT
 import Tippy from "@tippyjs/react";
-import "tippy.js/dist/tippy.css"; // optional
+import "tippy.js/dist/tippy.css"; //
 // NEXT
 import Link from "next/link";
 // NEXT-AUTH
 import { signOut, useSession } from "next-auth/react";
-// DATA
-import { linksNavbar } from "@/app/utils/data/DataLinksNavbar";
+// STYLES
+import styles from "./page.module.css";
 // ICONS
 import { AiOutlineLogout } from "react-icons/ai";
 const sizeIcon = 35;
+//
 import { DarkModeToggle } from "../../common";
+import Image from "next/image";
+
 
 //////////////////// EXPORT FUNCTION ////////////////////
 export default function Navbar() {
   //////////////////// STYLES ////////////////////
-  const RootNavbar = styled(Box)(({ theme }) => ({
-    height: "100px",
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
-    [theme.breakpoints.down("sm")]: {},
-  }));
-
-  const BoxLinksNavbar = styled(Box)(({ theme }) => ({
-    display: "flex",
-    alignItems: "center",
-    gap: "20px",
-  }));
+  const logo = {
+    height: "110px",
+    width: "110px",
+  }
 
   const BtnLogout = styled(Box)(({ theme }) => ({
     padding: "5px 15px",
@@ -41,20 +36,70 @@ export default function Navbar() {
     borderRadius: "25px",
   }));
 
-  const session = useSession();
+  const {
+    nav,
+    navLogo,
+    navLinks,
+    showNav,
+    hideNav,
+    slideInDown1,
+    navLink,
+    navBurger,
+    burgerBar,
+  } = styles;
 
+  const [showLinks, setShowLinks] = useState(false);
+
+  function handleShowLinks() {
+    setShowLinks(!showLinks);
+  }
+
+  const session = useSession();
   return (
-    <RootNavbar>
-      <Link href='/'>
-        <Typography variant='h5'>BLOG</Typography>
-      </Link>
-      <BoxLinksNavbar>
-        <DarkModeToggle />
-        {linksNavbar.map((link) => (
-          <Link key={link.id} href={link.url}>
-            <Typography variant='h5'>{link.title}</Typography>
-          </Link>
-        ))}
+    <nav className={`${nav} ${showLinks ? `${showNav}` : `${hideNav}`}`}>
+      <div className={navLogo}>
+        <Image
+          alt=''
+          height={80}
+          src='/assets/logos/globeTrotter.png'
+          style={logo}
+          width={80}
+        />
+      </div>
+      <ul className={navLinks}>
+        {/* <DarkModeToggle /> */}
+        <Link
+          className={(navLink, slideInDown1)}
+          href='/'
+          onClick={handleShowLinks}
+          style={{ textDecoration: "none" }}
+        >
+          Accueil
+        </Link>
+        <Link
+          className={navLink}
+          href='/pages/categories'
+          onClick={handleShowLinks}
+          style={{ textDecoration: "none" }}
+        >
+          Catégories
+        </Link>
+        <Link
+          href='/pages/blog'
+          className={navLink}
+          onClick={handleShowLinks}
+          style={{ textDecoration: "none" }}
+        >
+          Blog
+        </Link>
+        <Link
+          href='/pages/dashboard'
+          className={navLink}
+          onClick={handleShowLinks}
+          style={{ textDecoration: "none" }}
+        >
+          Tableau de bord
+        </Link>
         {session.status === "authenticated" && (
           <Tippy content=<div color='#FFF'>Se déconnecter</div>>
             <BtnLogout onClick={signOut}>
@@ -62,7 +107,10 @@ export default function Navbar() {
             </BtnLogout>
           </Tippy>
         )}
-      </BoxLinksNavbar>
-    </RootNavbar>
+      </ul>
+      <button className={navBurger} onClick={handleShowLinks}>
+        <span className={burgerBar}></span>
+      </button>
+    </nav>
   );
 }

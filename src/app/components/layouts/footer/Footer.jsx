@@ -2,7 +2,6 @@
 
 import { Box, Typography, styled } from "@mui/material";
 // UTILS DATA
-import { socialNetworksFooter } from "@/app/utils/data/DataSocialNetworksFooter";
 
 //////////////////// EXPORT FUNCTION ////////////////////
 export default function Footer() {

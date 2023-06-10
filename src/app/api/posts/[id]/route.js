@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import connect from "../../server/config/db";
 import Post from "../../server/models/Post";
 
+// http://localhost:3000/api/posts/id
 export const GET = async (request, { params }) => {
   const { id } = params;
 
@@ -16,6 +17,7 @@ export const GET = async (request, { params }) => {
   }
 };
 
+// http://localhost:3000/api/posts/id
 export const DELETE = async (request, { params }) => {
   const { id } = params;
 

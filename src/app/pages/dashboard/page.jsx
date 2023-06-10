@@ -1,22 +1,70 @@
 "use client";
-import React, { useEffect, useState } from "react";
-import styles from "./page.module.css";
+
 import useSWR from "swr";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import AddPostDashbord from "./AddPostDashbord";
-import { Box, Typography, styled } from "@mui/material";
+import {
+  Box,
+  Typography,
+  styled,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
+// ICONS
+import { RxCross2 } from "react-icons/rx"
 
 //////////////////// EXPORT FUNCTION ////////////////////
 export default function Dashboard() {
+  //////////////////// RESPONSIVES ////////////////////
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.up("md"));
+
   //////////////////// STYLES ////////////////////
   const RootDashboard = styled(Box)(({ theme }) => ({
-    alignItems: "center",
     display: "flex",
     flexDirection: "column",
+    marginTop: "100px",
     [theme.breakpoints.down("sm")]: {},
   }));
+
+  const BoxItems = styled(Box)(({ theme }) => ({
+    // width: "50px",
+  }));
+
+  const BoxItem = styled(Box)(({ theme }) => ({
+    color: "#000",
+    alignItems: "center",
+    display: "flex",
+    flexGrow: "nowrap",
+    margin: "35px",
+    [theme.breakpoints.down("sm")]: {
+      flexDirection: "column",
+    },
+  }));
+
+  const BoxItemDescDelete = styled(Box)(({ theme }) => ({
+    background: "linear-gradient(180deg, rgba(105,105,105,1) 0%,rgba(240,240,240,1) 100%)",
+    borderRadius: "10px",
+    padding: "15px",
+    display: "flex",
+    flexWrap: "nowrap",
+    marginLeft: "30px",
+    [theme.breakpoints.down("sm")]: {
+      flexDirection: "column",
+      marginLeft: "0px",
+      marginTop: "20px",
+    },
+  }));
+    
+  const BoxItemDesc = styled(Box)(({ theme }) => ({
+    display: "flex",
+    flexDirection: "column",
+  }));
+
+  const BoxDelete = styled(Box)(({ theme }) => ({}));
+
 
   const session = useSession();
   // console.log(session);
@@ -78,26 +126,42 @@ export default function Dashboard() {
   return (
     <RootDashboard>
       <AddPostDashbord handleSubmit={handleSubmit} />
-      <>
+      <BoxItems>
         {isLoading
           ? "loading"
           : data?.map(({ _id, img, title, desc, content }) => (
-              <div key={_id}>
-                <div>
-                  <Image src={img} alt='' width={200} height={100} />
-                </div>
-                <Typography variant='h4'>{title}</Typography>
-                <Typography variant='h4'>{desc}</Typography>
-                <Typography variant='h4'>{content}</Typography>
-                <span
-                  className={styles.delete}
-                  onClick={() => handleDelete(_id)}
-                >
-                  X
-                </span>
-              </div>
+              <BoxItem key={_id}>
+                <Image
+                  alt=''
+                  height={130}
+                  src={img}
+                  style={{ border: "5px solid #FFF", borderRadius: "4px" }}
+                  width={200}
+                />
+                <BoxItemDescDelete>
+                  <BoxItemDesc>
+                    <Typography variant={matches ? "h5" : "h6"}>
+                      {title}
+                    </Typography>
+                    <Typography variant={matches ? "h6" : "h6"}>
+                      {desc}
+                    </Typography>
+                    <div
+                      dangerouslySetInnerHTML={{ __html: content }}
+                      style={{ fontSize: "1em" }}
+                    />
+                  </BoxItemDesc>
+                  <BoxDelete>
+                    <RxCross2
+                      color='#FF0000'
+                      onClick={() => handleDelete(_id)}
+                      size={35}
+                    />
+                  </BoxDelete>
+                </BoxItemDescDelete>
+              </BoxItem>
             ))}
-      </>
+      </BoxItems>
     </RootDashboard>
   );
 }

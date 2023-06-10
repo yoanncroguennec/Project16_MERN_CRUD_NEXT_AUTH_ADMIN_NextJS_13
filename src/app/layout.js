@@ -1,12 +1,15 @@
-import "./globals.css";
-import { Inter, Roboto, Poppins } from "next/font/google";
+// Layout, 
+
+// LAYOUTS
+import { AppLayout } from "./components/layouts";
+// CONTEXTS
 import { ThemeProvider } from "./utils/contexts/ThemeContext";
-import { Footer, Navbar } from "./components/layouts";
+// PROVIDERS
 import AuthProvider from "./utils/providers/auth/AuthProvider";
+// STYLES
+import "./globals.css";
 
-
-const inter = Inter({ subsets: ["latin"] });
-
+// web page title tab
 export const metadata = {
   title: "Project 16 - MERN BLOG NEXT AUTH",
   description: "This is the description",
@@ -15,19 +18,15 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang='en'>
-      
-        <body className={inter.className}>
-          <ThemeProvider>
-            <AuthProvider>
-            
-              <div className='container'>
-                <Navbar />
-                {children}
-                <Footer />
-              </div>
-            </AuthProvider>
-          </ThemeProvider>
-        </body>
+      <body>
+        <ThemeProvider>
+          <AuthProvider>
+            <AppLayout>
+              {children}
+            </AppLayout>
+          </AuthProvider>
+        </ThemeProvider>
+      </body>
     </html>
   );
 }

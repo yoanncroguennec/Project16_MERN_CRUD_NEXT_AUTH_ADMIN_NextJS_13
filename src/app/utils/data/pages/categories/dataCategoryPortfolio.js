@@ -6,6 +6,7 @@ export const dataCategoryPortfolio = {
       desc: "Les Pyrénées sont sans nul doute un lieu incroyable à découvrir. Ses montagnes culminantes en font la deuxième destination préférée des skieurs en France. Mais ce coin du pays n’est pas uniquement aimé pour son ski. La zone est encore préservée du tourisme de masse et elle promet un dépaysement total et un sentiment de liberté aux personnes qui souhaiteraient en découvrir tous les aspects lors d’un road trip. Je suis partie il y a quelques années, pour ma part, à Vernet-les-Bains. Aujourd’hui, je me rends compte que j’aurai pu découvrir beaucoup plus la région si j’avais décidé de faire un road trip dans les Pyrénées. Alors, pourquoi ne pas traverser les Pyrénées ?",
       image: "/assets/imgs/categories/category/pyrenees.jpg",
       btnSeeMore: true,
+      urlDetailsCategory: "",
     },
     {
       id: 2,
@@ -13,6 +14,7 @@ export const dataCategoryPortfolio = {
       desc: "La Martinique, une île qui a su nous surprendre ! Dans ce contexte sanitaire spécial, ce voyage en Martinique nous a offert l’évasion et la dose d’exotisme dont nous avions besoin. Qu’il est bon de se retrouver sous la chaleur des tropiques, perdre ses pensées dans cette végétation luxuriante et rêver dans les bleus infinis de la mer des Caraïbes. Après 12 jours sur place à explorer les quatre coins de l’île aux Fleurs, voici nos ressentis, quelques expériences incontournables à faire en Martinique, mais aussi notre sélection d’activités éco-touristiques pour passer d’inoubliables vacances sous le soleil martiniquais. Nous vous proposons dans cet article de blog voyage, un itinéraire détaillé en 12 jours, jour par jour, comme nous aurions aimé le faire idéalement. Il se base sur notre expérience personnelle et vous propose un programme complet pour faire le tour de la Martinique et de ses richesses naturelles. Plus belles plages, randonnées à ne pas rater, top cascades, où voir les tortues, meilleures excursions à faire en Martinique et sites incontournables, suivez notre guide voyage en Martinique.",
       image: "/assets/imgs/categories/category/martinique.jpg",
       btnSeeMore: true,
+      urlDetailsCategory: "",
     },
   ],
   Villages: [
@@ -22,6 +24,7 @@ export const dataCategoryPortfolio = {
       desc: "Cap au Nord Ouest pour une balade à Carantec. Selon moi, c’est un arrêt immanquable si vous passez dans le coin et une excellente idée pour une excursion à la journée ou même seulement pour une balade de quelques heures.<br />CHÂTEAU DU TAUREAU, ÎLE LOUËT ET PLAGE DE TAHITI … Programme alléchant non ?<br />On commence donc la balade à l’est de Carantec. Vous pouvez stationner sur le parking des Mimosas (au coin de la rue de Pen al Lann et de l’allée des Mimosas). Ensuite descendez la rue de Pen al Lann et continuez sur le sentier devant vous. Vous arriverez sur le sentier côtier avec un magnifique point de vue sur l’île Louët et le château du Taureau.",
       image: "/assets/imgs/categories/category/carantec.jpg",
       btnSeeMore: true,
+      urlDetailsCategory: "/pages/categories/Villages/villages/carantec",
     },
     {
       id: 2,
@@ -29,6 +32,7 @@ export const dataCategoryPortfolio = {
       desc: "Le Lot est un département qui a tellement à offrir qu’il vous faudra bien plus d’un week end pour tout découvrir ! Je vous propose de visiter le magnifique village de Rocamadour, haut lieu de pèlerinage. Le village, accroché à sa falaise est tout simplement superbe. Les alentours sont vraiment chouettes comme le moulin à eau de Cougnaguet ou le célèbre gouffre de Padirac !",
       image: "/assets/imgs/categories/category/rocamadour.jpg",
       btnSeeMore: true,
+      urlDetailsCategory: "",
     },
   ],
   BonsPlans: [

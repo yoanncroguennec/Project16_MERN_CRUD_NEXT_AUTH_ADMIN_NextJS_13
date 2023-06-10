@@ -4,9 +4,6 @@ import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a lo
 import { Carousel } from "react-responsive-carousel";
 import Image from "next/image";
 import styles from "./page.module.css";
-import Hero from "public/hero.png";
-import Button from "@/app/components/layouts/btn/Button";
-import { useEffect } from "react";
 import Link from "next/link";
 import { Box, Typography, styled, useMediaQuery, useTheme } from "@mui/material";
 
