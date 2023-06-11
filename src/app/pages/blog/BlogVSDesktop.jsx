@@ -1,6 +1,6 @@
 "use client";
 
-import Truncate from "react-truncate";
+// import Truncate from "react-truncate";
 import { Box, Typography, styled } from "@mui/material";
 // NEXT
 import Link from "next/link";
@@ -60,12 +60,12 @@ export default function BlogVSDesktop({ data }) {
               {/* <Typography>{10 bons plans gratuits à Paris}</Typography> */}
               <Typography variant='h4'>{title}</Typography>
               <Typography variant='h5'>{desc}</Typography>
-              <Truncate lines={8} ellipsis={<span>.......</span>}>
+              {/* <Truncate lines={8} ellipsis={<span>.......</span>}>
                 <div
                   dangerouslySetInnerHTML={{ __html: content }}
                   style={{ fontSize: "1em" }}
                 />
-              </Truncate>
+              </Truncate> */}
             </Link>
           </BoxContent>
 
