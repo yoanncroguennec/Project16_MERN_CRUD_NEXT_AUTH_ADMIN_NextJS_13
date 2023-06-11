@@ -1,6 +1,7 @@
 "use client";
 
 // import Truncate from "react-truncate";
+import TruncateMarkup from "react-truncate-markup";
 import { Box, Typography, styled } from "@mui/material";
 // NEXT
 import Link from "next/link";
