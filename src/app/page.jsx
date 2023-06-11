@@ -5,11 +5,16 @@ import { Carousel } from "react-responsive-carousel";
 import Image from "next/image";
 import styles from "./page.module.css";
 import Link from "next/link";
-import { Box, Typography, styled, useMediaQuery, useTheme } from "@mui/material";
+import {
+  Box,
+  Typography,
+  styled,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
 
 // import { DefaultPlayer as Video } from "react-html5video";
 // import "react-html5video/dist/styles.css";
-
 
 const slideImgsHome = [
   "/assets/imgs/home/1.jpg",
@@ -22,7 +27,6 @@ const slideImgsHome = [
   "/assets/imgs/home/8.jpg",
 ];
 
-
 //////////////////// EXPORT FUNCTION ////////////////////
 export default function Home() {
   //////////////////// RESPONSIVES ////////////////////
@@ -33,24 +37,15 @@ export default function Home() {
   const RootPortfolio = styled(Box)(({ theme }) => ({
     alignItems: "center",
     display: "flex",
-    alignItems: "center",
     flexWrap: "nowrap",
-    // gap: "100px",
     [theme.breakpoints.down("sm")]: {
       flexDirection: "column",
     },
   }));
 
-  const BoxItem = styled(Box)(({ theme }) => ({
-    // flex: "1",
-    // display: "flex",
-    // flexDirection: "column",
-    // gap: "50px",
-  }));
-
   const stylesVideo = {
-    width: `${matches ? "700px" : "380px"}`,
-    height: `${matches ? "700px" : "380px"}`,
+    height: `${matches ? "700px" : "300px"}`,
+    width: `${matches ? "700px" : "300px"}`,
   };
 
   const TypoTitlePageHome = styled(Typography)(({ theme }) => ({
@@ -64,24 +59,29 @@ export default function Home() {
   }));
 
   const BoxBtnLinkPortfolio = styled(Box)(({ theme }) => ({
-    padding: "20px",
-    cursor: "pointer",
     background: "#53c28b",
     border: "none",
     borderRadius: "5px",
-    width: "max-content",
     color: "#FFF",
+    cursor: "pointer",
+    margin: "30px 0",
+    padding: "20px",
+    width: "max-content",
+  }));
+
+  const BoxCarouselImgs = styled(Box)(({ theme }) => ({
+    height: "350px",
+    width: "350px",
+    [theme.breakpoints.down("sm")]: {
+      height: "300px",
+      width: "300px",
+    },
   }));
 
   return (
     <RootPortfolio>
-      <BoxItem>
-        <video
-          autoPlay
-          // controls
-          loop
-          style={stylesVideo}
-        >
+      <div>
+        <video autoPlay controls loop style={stylesVideo}>
           <source src='/videoHome.mp4' />
         </video>
         <TypoTitlePageHome variant={matches ? "h1" : "h3"}>
@@ -93,36 +93,49 @@ export default function Home() {
           pour partagez vos différentes aventures dans la partie Blog. Le voyage
           commence ici....
         </TypoDescHome>
-        <Link href='/pages/portfolio'>
-          <BoxBtnLinkPortfolio className={styles.container}>
+        <Link href='/pages/categories'>
+          <BoxBtnLinkPortfolio>
             Commencer le voyage...
           </BoxBtnLinkPortfolio>
         </Link>
-      </BoxItem>
+      </div>
 
-      <Carousel
-        autoPlay={true}
-        infiniteLoop={true}
-        showIndicators={false}
-        showStatus={false}
-        // centerMode={false}
-        // useKeyboardArrows={false}
-        // autoFocus={false}
-        // dynamicHeight={true}
-        // emulateTouch={false}
-        // preventMovementUntilSwipeScrollTolerance={false}
-        // showArrows={false}
+      <BoxCarouselImgs>
+        <Carousel
+          autoPlay={true}
+          infiniteLoop={true}
+          showIndicators={false}
+          showStatus={false}
+          // centerMode={false}
+          // useKeyboardArrows={false}
+          // autoFocus={false}
+          // dynamicHeight={true}
+          // emulateTouch={false}
+          // preventMovementUntilSwipeScrollTolerance={false}
+          // showArrows={false}
 
-        // showThumbs={true}
-        // stopOnHover={false}
-        // swipeable={false}
-      >
-        {slideImgsHome.map((item, _id) => (
-          <div style={{ border: "4px solid #FFF" }} key={_id}>
-            <Image alt='' height={150} src={item} width={50} />
-          </div>
-        ))}
-      </Carousel>
+          // showThumbs={true}
+          // stopOnHover={false}
+          // swipeable={false}
+        >
+          {slideImgsHome.map((item, _id) => (
+            <div
+              style={{
+                border: "4px solid #FFF",
+                height: "350px",
+                width: "350px",
+              }}
+              key={_id}
+            >
+              <Image
+                alt=''
+                fill={true}
+                src={item}
+              />
+            </div>
+          ))}
+        </Carousel>
+      </BoxCarouselImgs>
     </RootPortfolio>
   );
 }

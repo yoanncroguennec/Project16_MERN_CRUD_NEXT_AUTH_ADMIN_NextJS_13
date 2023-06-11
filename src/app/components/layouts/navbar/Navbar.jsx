@@ -1,11 +1,12 @@
 "use client";
 
 import React, { useState } from "react";
-import { Box, styled } from "@mui/material";
+import { Box, Typography, styled } from "@mui/material";
 //@TIPPYJS/REACT
 import Tippy from "@tippyjs/react";
 import "tippy.js/dist/tippy.css"; //
 // NEXT
+import Image from "next/image";
 import Link from "next/link";
 // NEXT-AUTH
 import { signOut, useSession } from "next-auth/react";
@@ -16,7 +17,6 @@ import { AiOutlineLogout } from "react-icons/ai";
 const sizeIcon = 35;
 //
 import { DarkModeToggle } from "../../common";
-import Image from "next/image";
 
 
 //////////////////// EXPORT FUNCTION ////////////////////
@@ -57,7 +57,7 @@ export default function Navbar() {
   const session = useSession();
   return (
     <nav className={`${nav} ${showLinks ? `${showNav}` : `${hideNav}`}`}>
-      <div className={navLogo}>
+      <Link href="/">
         <Image
           alt=''
           height={80}
@@ -65,7 +65,7 @@ export default function Navbar() {
           style={logo}
           width={80}
         />
-      </div>
+      </Link>
       <ul className={navLinks}>
         {/* <DarkModeToggle /> */}
         <Link
@@ -74,7 +74,7 @@ export default function Navbar() {
           onClick={handleShowLinks}
           style={{ textDecoration: "none" }}
         >
-          Accueil
+          <Typography variant='h5'>Accueil</Typography>
         </Link>
         <Link
           className={navLink}
@@ -82,7 +82,7 @@ export default function Navbar() {
           onClick={handleShowLinks}
           style={{ textDecoration: "none" }}
         >
-          Catégories
+          <Typography variant='h5'>Catégories</Typography>
         </Link>
         <Link
           href='/pages/blog'
@@ -90,7 +90,7 @@ export default function Navbar() {
           onClick={handleShowLinks}
           style={{ textDecoration: "none" }}
         >
-          Blog
+          <Typography variant='h5'>Blog</Typography>
         </Link>
         <Link
           href='/pages/dashboard'
@@ -98,7 +98,7 @@ export default function Navbar() {
           onClick={handleShowLinks}
           style={{ textDecoration: "none" }}
         >
-          Tableau de bord
+          <Typography variant='h5'>Tableau de bord</Typography>
         </Link>
         {session.status === "authenticated" && (
           <Tippy content=<div color='#FFF'>Se déconnecter</div>>

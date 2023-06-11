@@ -34,7 +34,7 @@ export default function Portfolio() {
 
   return (
     <>
-      <Typography variant={matches ? "h1" : "h3"}>
+      <Typography align="center" variant={matches ? "h1" : "h3"}>
         Catégories de voyages
       </Typography>
       <Typography

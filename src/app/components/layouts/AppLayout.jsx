@@ -12,9 +12,11 @@ export default function AppLayout({ children }) {
     display: "flex",
     flexDirection: "column",
     margin: "0 250px",
-    minHeight: "90vh",
-    paddingTop: "150px",
-    [theme.breakpoints.down("sm")]: {},
+    minHeight: "95vh",
+    padding: "100px 0",
+    [theme.breakpoints.down("sm")]: {
+      margin: "0 10px",
+    },
   }));
 
   return (

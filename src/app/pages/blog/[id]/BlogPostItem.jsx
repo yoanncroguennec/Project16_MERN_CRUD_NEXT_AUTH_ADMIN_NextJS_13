@@ -41,8 +41,8 @@ export default function BlogPostItem({ data }) {
   };
 
   const stylesImgPostItem = {
-    height: "70%",
-    width: "70%",
+    height: "50%",
+    width: "50%",
   };
 
   const TypoDesc = styled(Typography)(({ theme }) => ({
@@ -71,10 +71,10 @@ export default function BlogPostItem({ data }) {
       </BoxHeadPostItem>
       <Image
         alt=''
-        height={250}
+        height={400}
         src={img}
         style={stylesImgPostItem}
-        width={250}
+        width={400}
       />
       <TypoDesc variant='h5'>{desc}</TypoDesc>
       <div

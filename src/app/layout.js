@@ -1,4 +1,8 @@
-// Layout, 
+// Layout, Navbar, Footer
+// Page, Catégories
+
+
+
 
 // LAYOUTS
 import { AppLayout } from "./components/layouts";

@@ -98,7 +98,7 @@ export default function Register() {
           required
           style={stylesInput}
         />
-        <button style={stylesBtn}>S'inscrire</button>
+        <button style={stylesBtn}>S&apos;inscrire</button>
         {error && "Something went wrong!"}
       </form>
       <span>- OU -</span>

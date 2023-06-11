@@ -7,10 +7,9 @@ import { Box, Typography, styled } from "@mui/material";
 export default function Footer() {
   //////////////////// STYLES ////////////////////
   const RootFooter = styled(Box)(({ theme }) => ({
-    height: "50px",
     display: "flex",
-    alignItems: "center",
-    justifyContent: "space-between",
+    height: "50px",
+    textAlign: "center",
     [theme.breakpoints.down("sm")]: {},
   }));
 
@@ -22,7 +21,7 @@ export default function Footer() {
 
   return (
     <RootFooter>
-      <Typography variant="h6">©2023 Croguennec Yoann. Tous droits réservés..</Typography>
+      <Typography align="center" variant="h6">©2023 Croguennec Yoann. Tous droits réservés..</Typography>
       <BoxSocialNetworks>
         {/* {socialNetworksFooter.map((item, _id) => {
           return <div key={_id}>{item}</div>;
