@@ -79,37 +79,3 @@ export default function BlogVSDesktop({ data }) {
     </div>
   );
 }
-
-{
-  /* <RootNavbar key={_id}>
-  <Link href={`/pages/blog/${_id}`}>
-    <div>
-      <h1 className={styles.title}>{title}</h1>
-      <p className={styles.desc}>{desc}</p>
-    </div>
-    <div className={styles.imgContainer}>
-      <Image className={styles.img} height={250} src={img} alt='' width={400} />
-    </div> */
-}
-
-{
-  /* <div className={styles.imageContainer}>
-            <Image
-              src={item.img}
-              alt=''
-              width={400}
-              height={250}
-              className={styles.image}
-            />
-          </div> */
-}
-{
-  /* <div className={styles.content}>
-            <h1 className={styles.title}>{item.title}</h1>
-            <p className={styles.desc}>{item.desc}</p>
-          </div> */
-}
-{
-  /* </Link>
-</RootNavbar>; */
-}
