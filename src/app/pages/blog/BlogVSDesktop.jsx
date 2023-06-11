@@ -60,6 +60,14 @@ export default function BlogVSDesktop({ data }) {
               {/* <Typography>{10 bons plans gratuits à Paris}</Typography> */}
               <Typography variant='h4'>{title}</Typography>
               <Typography variant='h5'>{desc}</Typography>
+              <TruncateMarkup lines={3}>
+                <div style={{ border: "1px dashed #c7c7c7", width: "250px" }}>
+                  {"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do " +
+                    "eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim " +
+                    "ad minim veniam, quis nostrud exercitation ullamco laboris nisi " +
+                    "ut aliquip ex ea commodo consequat."}
+                </div>
+              </TruncateMarkup>
               {/* <Truncate lines={8} ellipsis={<span>.......</span>}>
                 <div
                   dangerouslySetInnerHTML={{ __html: content }}

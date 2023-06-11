@@ -24,6 +24,7 @@
     "react-icons": "^4.9.0",
     "react-responsive-carousel": "^3.2.23",
     "react-scroll-to-top": "^3.0.0",
+    "react-truncate-markup": "^5.1.2",
     "swr": "^2.1.5"
   }
 }
