@@ -1,11 +1,14 @@
 "use client";
 
-import { Box, Typography, styled } from "@mui/material";
+import { Box, Typography, styled, useMediaQuery, useTheme } from "@mui/material";
 import Image from "next/image";
 
 //////////////////// EXPORT FUNCTION ////////////////////
 export default function BlogPostItem({ data }) {
-  const { username, img, title, desc, content } = data;
+  //////////////////// RESPONSIVES ////////////////////
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.up("md"));
+
   //////////////////// STYLES ////////////////////
   const BoxHeadPostItem = styled(Box)(({ theme }) => ({
     alignItems: "center",
@@ -18,6 +21,7 @@ export default function BlogPostItem({ data }) {
   const BoxAuthor = styled(Box)(({ theme }) => ({
     border: "2px solid #FFF",
     borderRadius: "10px",
+    marginRight: "50px",
     padding: "15px",
   }));
 
@@ -51,6 +55,9 @@ export default function BlogPostItem({ data }) {
     textDecoration: "underline",
   }));
 
+  // Destructuring
+  const { username, img, title, desc, content } = data;
+
   return (
     <>
       <BoxHeadPostItem>
@@ -67,7 +74,7 @@ export default function BlogPostItem({ data }) {
             <Typography variant='h6'>{username}</Typography>
           </BoxDescAuthor>
         </BoxAuthor>
-        <Typography variant='h3'>{title}</Typography>
+        <Typography variant={matches ? "h3" : "h4"}>{title}</Typography>
       </BoxHeadPostItem>
       <Image
         alt=''

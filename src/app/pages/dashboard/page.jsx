@@ -1,10 +1,5 @@
 "use client";
 
-import useSWR from "swr";
-import { useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
-import Image from "next/image";
-import AddPostDashbord from "./AddPostDashbord";
 import {
   Box,
   Typography,
@@ -12,8 +7,17 @@ import {
   useMediaQuery,
   useTheme,
 } from "@mui/material";
-// ICONS
-import { RxCross2 } from "react-icons/rx"
+// SWR est une bibliothèque React Hooks pour la récupération de données.
+import useSWR from "swr";
+import ScrollToTop from "react-scroll-to-top";
+// NEXT
+import Image from "next/image";
+import { useRouter } from "next/navigation";
+// NEXT AUTH
+import { useSession } from "next-auth/react";
+import AddPostDashbord from "./AddPostDashbord";
+import IconDelete from "@/app/components/layouts/icons/IconDelete";
+
 
 //////////////////// EXPORT FUNCTION ////////////////////
 export default function Dashboard() {
@@ -29,9 +33,17 @@ export default function Dashboard() {
     [theme.breakpoints.down("sm")]: {},
   }));
 
-  const BoxItems = styled(Box)(({ theme }) => ({
-    // width: "50px",
+  const BoxImgBtnDeleteResponsive = styled(Box)(({ theme }) => ({
+    align: "center",
+    display: "flex",
+    flexWrap: "nowrap",
   }));
+
+  const stylesImgItem = {
+    border: "5px solid #FFF",
+    borderRadius: "4px",
+    marginRight: "20px",
+  };
 
   const BoxItem = styled(Box)(({ theme }) => ({
     color: "#000",
@@ -45,7 +57,8 @@ export default function Dashboard() {
   }));
 
   const BoxItemDescDelete = styled(Box)(({ theme }) => ({
-    background: "linear-gradient(180deg, rgba(105,105,105,1) 0%,rgba(240,240,240,1) 100%)",
+    background:
+      "linear-gradient(180deg, rgba(105,105,105,1) 0%,rgba(240,240,240,1) 100%)",
     borderRadius: "10px",
     padding: "15px",
     display: "flex",
@@ -57,21 +70,30 @@ export default function Dashboard() {
       marginTop: "20px",
     },
   }));
-    
+
   const BoxItemDesc = styled(Box)(({ theme }) => ({
     display: "flex",
     flexDirection: "column",
   }));
 
-  const BoxDelete = styled(Box)(({ theme }) => ({}));
+  const TypoTitleItem = styled(Typography)(({ theme }) => ({
+    fontWeight: "bold",
+  }));
 
+  const stylesHr = {
+    background: "#FFF",
+    color: "#FFF",
+    height: "4px",
+    marginTop: "50px",
+    width: "250px",
+  };
 
   const session = useSession();
   // console.log(session);
 
   const router = useRouter();
 
-  //NEW WAY TO FETCH DATA
+  // New way to fetch data
   const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
   const { data, mutate, error, isLoading } = useSWR(
@@ -80,7 +102,7 @@ export default function Dashboard() {
   );
 
   if (session.status === "loading") {
-    return <p>Loading...</p>;
+    return <p>Chargement...</p>;
   }
 
   if (session.status === "unauthenticated") {
@@ -112,6 +134,7 @@ export default function Dashboard() {
     }
   };
 
+
   const handleDelete = async (id) => {
     try {
       await fetch(`/api/posts/${id}`, {
@@ -126,42 +149,41 @@ export default function Dashboard() {
   return (
     <RootDashboard>
       <AddPostDashbord handleSubmit={handleSubmit} />
-      <BoxItems>
-        {isLoading
-          ? "loading"
-          : data?.map(({ _id, img, title, desc, content }) => (
-              <BoxItem key={_id}>
+      {isLoading
+        ? "loading"
+        : data?.map(({ _id, img, title, desc, content }) => (
+            <BoxItem key={_id}>
+              <BoxImgBtnDeleteResponsive>
                 <Image
                   alt=''
                   height={130}
                   src={img}
-                  style={{ border: "5px solid #FFF", borderRadius: "4px" }}
+                  style={stylesImgItem}
                   width={200}
                 />
-                <BoxItemDescDelete>
-                  <BoxItemDesc>
-                    <Typography variant={matches ? "h5" : "h6"}>
-                      {title}
-                    </Typography>
-                    <Typography variant={matches ? "h6" : "h6"}>
-                      {desc}
-                    </Typography>
-                    <div
-                      dangerouslySetInnerHTML={{ __html: content }}
-                      style={{ fontSize: "1em" }}
-                    />
-                  </BoxItemDesc>
-                  <BoxDelete>
-                    <RxCross2
-                      color='#FF0000'
-                      onClick={() => handleDelete(_id)}
-                      size={35}
-                    />
-                  </BoxDelete>
-                </BoxItemDescDelete>
-              </BoxItem>
-            ))}
-      </BoxItems>
+                {matches ? null : <IconDelete id={_id} />}
+              </BoxImgBtnDeleteResponsive>
+              <BoxItemDescDelete>
+                <span onClick={() => handleDelete(_id)}>X</span>
+                <BoxItemDesc>
+                  <TypoTitleItem variant={matches ? "h4" : "h5"}>
+                    {title}
+                  </TypoTitleItem>
+                  <Typography variant={matches ? "h5" : "h6"}>
+                    {desc}
+                  </Typography>
+
+                  <div
+                    dangerouslySetInnerHTML={{ __html: content }}
+                    style={{ fontSize: "1em" }}
+                  />
+                </BoxItemDesc>
+                {matches ? <IconDelete id={_id} /> : null}
+              </BoxItemDescDelete>
+              {matches ? null : <hr style={stylesHr} />}
+            </BoxItem>
+          ))}
+      <ScrollToTop smooth />
     </RootDashboard>
   );
 }

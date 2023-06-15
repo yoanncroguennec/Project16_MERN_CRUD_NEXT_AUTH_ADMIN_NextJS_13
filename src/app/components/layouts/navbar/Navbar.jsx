@@ -16,7 +16,7 @@ import styles from "./page.module.css";
 import { AiOutlineLogout } from "react-icons/ai";
 const sizeIcon = 35;
 //
-import { DarkModeToggle } from "../../common";
+// import { DarkModeToggle } from "../../common";
 
 
 //////////////////// EXPORT FUNCTION ////////////////////
@@ -48,6 +48,7 @@ export default function Navbar() {
     burgerBar,
   } = styles;
 
+  // Show Links Navbar
   const [showLinks, setShowLinks] = useState(false);
 
   function handleShowLinks() {
@@ -57,7 +58,7 @@ export default function Navbar() {
   const session = useSession();
   return (
     <nav className={`${nav} ${showLinks ? `${showNav}` : `${hideNav}`}`}>
-      <Link href="/">
+      <Link href='/'>
         <Image
           alt=''
           height={80}
@@ -92,20 +93,32 @@ export default function Navbar() {
         >
           <Typography variant='h5'>Blog</Typography>
         </Link>
-        <Link
-          href='/pages/dashboard'
-          className={navLink}
-          onClick={handleShowLinks}
-          style={{ textDecoration: "none" }}
-        >
-          <Typography variant='h5'>Tableau de bord</Typography>
-        </Link>
         {session.status === "authenticated" && (
-          <Tippy content=<div color='#FFF'>Se déconnecter</div>>
-            <BtnLogout onClick={signOut}>
-              <AiOutlineLogout size={sizeIcon} />
-            </BtnLogout>
-          </Tippy>
+          <>
+            <Link
+              href='/pages/dashboard'
+              className={navLink}
+              onClick={handleShowLinks}
+              style={{ textDecoration: "none" }}
+            >
+              <Typography variant='h5'>Tableau de bord</Typography>
+            </Link>
+            <Tippy content=<div color='#FFF'>Se déconnecter</div>>
+              <BtnLogout onClick={signOut}>
+                <AiOutlineLogout size={sizeIcon} />
+              </BtnLogout>
+            </Tippy>
+          </>
+        )}
+        {session.status !== "authenticated" && (
+          <Link
+            href='/pages/dashboard/login'
+            className={navLink}
+            onClick={handleShowLinks}
+            style={{ textDecoration: "none" }}
+          >
+            <Typography variant='h5'>Se connecter</Typography>
+          </Link>
         )}
       </ul>
       <button className={navBurger} onClick={handleShowLinks}>

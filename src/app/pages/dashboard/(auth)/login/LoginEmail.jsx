@@ -8,7 +8,7 @@ export default function LoginEmail({ error, stylesBtn }) {
     display: "flex",
     flexDirection: "column",
     gap: "20px",
-    width: "300px",
+    // width: "300px",
   };
 
   const stylesInput = {
@@ -48,7 +48,7 @@ export default function LoginEmail({ error, stylesBtn }) {
           required
           style={stylesInput}
         />
-        <button style={stylesBtn}>Login</button>
+        <button style={stylesBtn}>Se Connecter</button>
         {error && error}
       </form>
     </div>

@@ -43,7 +43,7 @@ export default function Login() {
     fontWeight: "bold",
     margin: "5px 0",
     padding: "20px",
-    width: "300px",
+    // width: "300px",
     "&:hover": {
       background: "#49b07d",
     },

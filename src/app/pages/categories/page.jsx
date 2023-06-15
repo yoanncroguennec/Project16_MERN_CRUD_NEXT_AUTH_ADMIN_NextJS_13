@@ -5,7 +5,7 @@ import Link from "next/link";
 import { Box, Typography, styled, useMediaQuery, useTheme } from "@mui/material";
 
 //////////////////// EXPORT FUNCTION ////////////////////
-export default function Portfolio() {
+export default function Categories() {
   //////////////////// RESPONSIVES ////////////////////
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up("md"));
@@ -34,7 +34,7 @@ export default function Portfolio() {
 
   return (
     <>
-      <Typography align="center" variant={matches ? "h1" : "h3"}>
+      <Typography align="center" variant={matches ? "h2" : "h3"}>
         Catégories de voyages
       </Typography>
       <Typography

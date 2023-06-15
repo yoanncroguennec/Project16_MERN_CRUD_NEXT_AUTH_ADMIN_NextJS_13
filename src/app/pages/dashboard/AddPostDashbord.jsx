@@ -1,10 +1,36 @@
-import * as React from 'react';
-import { Box, Button, Typography, Modal, styled } from '@mui/material';
-import styles from "./page.module.css";
+import * as React from "react";
+import {
+  Box,
+  Button,
+  Typography,
+  Modal,
+  styled,
+  useTheme,
+  useMediaQuery,
+} from "@mui/material";
 
 //////////////////// EXPORT FUNCTION ////////////////////
 export default function AddPostDashbord({ handleSubmit }) {
+  //////////////////// RESPONSIVES ////////////////////
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.up("md"));
+
   //////////////////// STYLES ////////////////////
+  const TypoBtnAddPostAndSendPost = styled(Typography)(({ theme }) => ({
+    background: "#53c28b",
+    border: "2px solid #FFF",
+    borderRadius: "25px",
+    color: "#FFF",
+    cursor: "pointer",
+    fontWeight: "bold",
+    padding: "10px",
+    width: "300px",
+    "&:hover": {
+      background: "#f00",
+    },
+    [theme.breakpoints.down("sm")]: {},
+  }));
+
   const style = {
     position: "absolute",
     top: "50%",
@@ -18,23 +44,41 @@ export default function AddPostDashbord({ handleSubmit }) {
     p: 4,
   };
 
-  const RootRegister = styled(Box)(({ theme }) => ({
+  const stylesFormAddPost = {
     display: "flex",
-    alignItems: "center",
+    flex: 1,
     flexDirection: "column",
     gap: "20px",
-    [theme.breakpoints.down("sm")]: {},
-  }));
+  };
 
+  const stylesInputTextarea = {
+    background: "transparent",
+    border: "2px solid #bbb",
+    borderRadius: "3px",
+    color: "#bbb",
+    fontSize: "20px",
+    fontWeight: "bold",
+    padding: "10px",
+  };
+
+  const stylesSendAddPost = {
+
+  }
+
+  // States
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
   return (
     <div>
-      <Typography onClick={handleOpen} variant='h5'>
+      <TypoBtnAddPostAndSendPost
+        align='center'
+        onClick={handleOpen}
+        variant='h5'
+      >
         Ajouter une nouvelle publication
-      </Typography>
+      </TypoBtnAddPostAndSendPost>
       <Modal
         open={open}
         onClose={handleClose}
@@ -42,24 +86,33 @@ export default function AddPostDashbord({ handleSubmit }) {
         aria-describedby='modal-modal-description'
       >
         <Box sx={style}>
-          <form className={styles.new} onSubmit={handleSubmit}>
-            <Typography variant='h4'>
+          <form onSubmit={handleSubmit} style={stylesFormAddPost}>
+            <Typography variant={matches ? "h4" : "h6"}>
               Ajouter une nouvelle publication
             </Typography>
-            <input type='text' placeholder='Titre' className={styles.input} />
             <input
+              placeholder='Titre'
+              style={stylesInputTextarea}
               type='text'
+            />
+            <input
               placeholder='Description'
-              className={styles.input}
+              style={stylesInputTextarea}
+              type='text'
             />
-            <input type='text' placeholder='Image' className={styles.input} />
+            <input
+              placeholder='Image'
+              style={stylesInputTextarea}
+              type='text'
+            />
             <textarea
-              placeholder='Contenu'
-              className={styles.textArea}
               cols='30'
+              placeholder='Contenu'
               rows='10'
+              style={stylesInputTextarea}
             />
-            <button className={styles.button}>Envoyer</button>
+            {/* Laissez Balise button et non en MUI car si non form ne fonctionne pas */}
+            <button>Envoyer</button>
           </form>
         </Box>
       </Modal>

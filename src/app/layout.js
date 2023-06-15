@@ -1,17 +1,8 @@
-// Layout, Navbar, Footer
-// Page, Catégories
-
-
-
-
 // LAYOUTS
 import { AppLayout } from "./components/layouts";
-// CONTEXTS
-import { ThemeProvider } from "./utils/contexts/ThemeContext";
-// PROVIDERS
-import AuthProvider from "./utils/providers/auth/AuthProvider";
 // STYLES
 import "./globals.css";
+import { GlobalProvider } from "./utils/providers/GlobalProvider";
 
 // web page title tab
 export const metadata = {
@@ -23,13 +14,11 @@ export default function RootLayout({ children }) {
   return (
     <html lang='en'>
       <body>
-        <ThemeProvider>
-          <AuthProvider>
+          <GlobalProvider>
             <AppLayout>
               {children}
             </AppLayout>
-          </AuthProvider>
-        </ThemeProvider>
+          </GlobalProvider>
       </body>
     </html>
   );

@@ -1,38 +1,29 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+Bonjour, je vous présente une application CRUD & MERN sans utiliser le context pour la partie CRUD.
+Pour la partie "Login" pour tester l'application voici les identifiants :
+"user : yoann.croguennec@gmail.com / password : 95449544"
 
-## Getting Started
+## Procédure Effectué
 
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+### Step 1 - Front - Mise en place de la partie Front 'Home", "Categories", "Login", "Register"
+### Step 2 - Back Config Server - Config connectDB
+### Step 3 - Back Models Server - Create Models User & Post
+### Step 4 - "getAllPosts"
+1. Back "app/api/posts" - Mise en place de la méthod "Get" for "getAllPosts"
+2. Front folder Blog - Call API "getAllPosts"
+### Step 5 - Next JS Auth
+1. Back - Create "src/app/api/auth/[...nextauth]/route.js
+2. Back - Mise en place du Provider "Google" pour se connecter
+3. Mise en place des variables d'environnement "NEXTAUTH_SECRET" & "NEXTAUTH_URL"
+4. Front - Mise en place du Provider "Google" dans la partie Login du Front
+### Step 6 - Partie Register
+1. Front (register) - Mise en place du Formulaire "Register" sans la logique
+2. Back (Register) - Create "src/app/api/auth/register/route.js"
+### Step 7 - Next JS Auth
+1. Back - Mise en place de "CredentialsProvider" pour se loguer via mail
+2. Front Login - Mise en place du formulaire "Login" sans la logique.
+3. Front Login - Mise en place de la logique (api Login) du formulaire "Login".
+### Step 8 - Dashboard
+1. Front - Mise en place du Formulaire "Add new Post" sans la logique.
+2. Back "app/api/posts" - Mise en place de la méthod "Post" for "postPost"
+3. Back "app/api/posts/[id]" - Mise en place de la function "DELETE"
+4. Front - Mise en place de la function "handleDelete()"

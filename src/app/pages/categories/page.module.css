@@ -1,3 +1,4 @@
+/* STYLES CATEGORIES */
 .item {
   border: 5px solid #bbb;
   border-radius: 5px;
@@ -15,16 +16,4 @@
 }
 .item:nth-child(3) {
   background: url("/assets/imgs/categories/goodPlans.jpg");
-}
-
-.title {
-  position: absolute;
-  right: 10px;
-  bottom: 10px;
-  font-size: 40px;
-  font-weight: bold;
-}
-
-.item:hover .title {
-  color: #53c28b;
 }
