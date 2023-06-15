@@ -16,8 +16,10 @@ import { useRouter } from "next/navigation";
 // NEXT AUTH
 import { useSession } from "next-auth/react";
 import AddPostDashbord from "./AddPostDashbord";
-import IconDelete from "@/app/components/layouts/icons/IconDelete";
-
+// ICONS
+import { RxCross2 } from "react-icons/rx";
+const colorIcon = "#FF0000";
+const sizeIcon = 35;
 
 //////////////////// EXPORT FUNCTION ////////////////////
 export default function Dashboard() {
@@ -161,10 +163,15 @@ export default function Dashboard() {
                   style={stylesImgItem}
                   width={200}
                 />
-                {matches ? null : <IconDelete id={_id} />}
+                {matches ? null : (
+                  <RxCross2
+                    color={colorIcon}
+                    onClick={() => handleDelete(_id)}
+                    size={sizeIcon}
+                  />
+                )}
               </BoxImgBtnDeleteResponsive>
               <BoxItemDescDelete>
-                <span onClick={() => handleDelete(_id)}>X</span>
                 <BoxItemDesc>
                   <TypoTitleItem variant={matches ? "h4" : "h5"}>
                     {title}
@@ -172,13 +179,16 @@ export default function Dashboard() {
                   <Typography variant={matches ? "h5" : "h6"}>
                     {desc}
                   </Typography>
-
                   <div
                     dangerouslySetInnerHTML={{ __html: content }}
                     style={{ fontSize: "1em" }}
                   />
                 </BoxItemDesc>
-                {matches ? <IconDelete id={_id} /> : null}
+                <RxCross2
+                  color={colorIcon}
+                  onClick={() => handleDelete(_id)}
+                  size={sizeIcon}
+                />
               </BoxItemDescDelete>
               {matches ? null : <hr style={stylesHr} />}
             </BoxItem>
