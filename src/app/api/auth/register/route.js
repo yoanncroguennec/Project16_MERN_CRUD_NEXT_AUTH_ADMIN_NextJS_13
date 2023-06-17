@@ -2,8 +2,11 @@
 // import { NextResponse } from "next/server";
 // import connect from "../../server/config/db";
 // import User from "../../server/models/User";
+import nc from "next-connect";
 import { registerUser } from "../../server/controllers/AuthCtrl";
 
+
+const handler = nc();
 
 handler.post(registerUser);
 
