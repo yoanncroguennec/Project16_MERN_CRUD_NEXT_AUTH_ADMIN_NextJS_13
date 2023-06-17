@@ -1,29 +1,35 @@
-import bcrypt from "bcryptjs";
-import { NextResponse } from "next/server";
-import connect from "../../server/config/db";
-import User from "../../server/models/User";
+// import bcrypt from "bcryptjs";
+// import { NextResponse } from "next/server";
+// import connect from "../../server/config/db";
+// import User from "../../server/models/User";
+import { registerUser } from "../../server/controllers/AuthCtrl";
 
-export const POST = async (request) => {
-  const { name, email, password } = await request.json();
 
-  await connect();
+handler.post(registerUser);
 
-  const hashedPassword = await bcrypt.hash(password, 5);
+export default handler;
 
-  const newUser = new User({
-    name,
-    email,
-    password: hashedPassword,
-  });
+// export const POST = async (request) => {
+//   const { name, email, password } = await request.json();
 
-  try {
-    await newUser.save();
-    return new NextResponse("User has been created", {
-      status: 201,
-    });
-  } catch (err) {
-    return new NextResponse(err.message, {
-      status: 500,
-    });
-  }
-};
+//   await connect();
+
+//   const hashedPassword = await bcrypt.hash(password, 5);
+
+//   const newUser = new User({
+//     name,
+//     email,
+//     password: hashedPassword,
+//   });
+
+//   try {
+//     await newUser.save();
+//     return new NextResponse("User has been created", {
+//       status: 201,
+//     });
+//   } catch (err) {
+//     return new NextResponse(err.message, {
+//       status: 500,
+//     });
+//   }
+// };
