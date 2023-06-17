@@ -28,7 +28,7 @@ export default function Notfound() {
       </Typography>
 
       <Link href='/' style={stylesLink}>
-        <Typography variant='h4'>Retour vers l'accueil</Typography>
+        <Typography variant='h4'>Retour vers l&apos;accueil</Typography>
       </Link>
     </RootNotfound>
   );
