@@ -2,8 +2,18 @@ Bonjour, je vous présente une application CRUD & MERN sans utiliser le context 
 Pour la partie "Login" pour tester l'application voici les identifiants :
 "user : yoann.croguennec@gmail.com / password : 95449544"
 
-## Procédure Effectué
+***
+***
 
+<b><u>Procédure Effectué :</u></b><br/>
+Name BDD : "Project16_MERN_CRUD_NEXTAUTH_NEXTJS_13"
+Lien Github : "https://github1s.com/yoanncroguennec/Project16_MERN_CRUD_NEXT_AUTH_ADMIN_NextJS_13"
+Lien Vercel : "https://project16-mern-crud-next-auth-admin-next-js-13.vercel.app/"
+
+***
+***
+
+<b><u>Informations du Projet :</u></b><br/>
 ### Step 1 - Front - Mise en place de la partie Front 'Home", "Categories", "Login", "Register"
 ### Step 2 - Back Config Server - Config connectDB
 ### Step 3 - Back Models Server - Create Models User & Post

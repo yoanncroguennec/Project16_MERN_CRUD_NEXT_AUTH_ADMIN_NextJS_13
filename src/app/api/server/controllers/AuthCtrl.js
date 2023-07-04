@@ -1,5 +1,5 @@
 import bcrypt from "bcryptjs";
-import connect from "../config/db";
+// import connect from "../config/db";
 import User from "../models/User";
 import { NextResponse } from "next/server";
 
@@ -7,7 +7,7 @@ import { NextResponse } from "next/server";
 export const registerUser = async (req, res) => {
   const { name, email, password } = await req.json();
 
-  await connect();
+//   await connect();
 
   const hashedPassword = await bcrypt.hash(password, 5);
 

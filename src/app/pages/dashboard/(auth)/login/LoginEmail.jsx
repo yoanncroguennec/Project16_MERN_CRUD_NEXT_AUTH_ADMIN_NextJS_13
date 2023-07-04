@@ -34,7 +34,7 @@ export default function LoginEmail({ error, stylesBtn }) {
 
   return (
     <div>
-      <Typography variant='h6'>
+      <Typography variant='h6' style={{ padding: "10px 0" }}>
         <strong>
           <u>Démo :</u>
         </strong>{" "}

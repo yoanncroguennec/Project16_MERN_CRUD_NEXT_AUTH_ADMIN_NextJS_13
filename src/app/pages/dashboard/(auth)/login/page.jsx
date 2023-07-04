@@ -76,7 +76,8 @@ export default function Login() {
       </Typo>
 
       <LoginEmail error={error} stylesBtn={stylesBtn} />
-      <button
+      
+      {/* <button
         onClick={() => {
           signIn("google");
         }}
@@ -87,7 +88,7 @@ export default function Login() {
       <Typo>- OU -</Typo>
       <Link href='/pages/dashboard/register'>
         <TypoLink>Créer un nouveau compte</TypoLink>
-      </Link>
+      </Link> */}
     </RootLogin>
   );
 }

@@ -4,9 +4,11 @@
 // import User from "../../server/models/User";
 import nc from "next-connect";
 import { registerUser } from "../../server/controllers/AuthCtrl";
-
+import dbConnect from "../../server/config/db";
 
 const handler = nc();
+
+dbConnect();
 
 handler.post(registerUser);
 
