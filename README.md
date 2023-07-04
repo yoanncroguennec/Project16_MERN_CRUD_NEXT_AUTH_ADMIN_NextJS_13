@@ -37,3 +37,9 @@ Lien Vercel : "https://project16-mern-crud-next-auth-admin-next-js-13.vercel.app
 2. Back "app/api/posts" - Mise en place de la méthod "Post" for "postPost"
 3. Back "app/api/posts/[id]" - Mise en place de la function "DELETE"
 4. Front - Mise en place de la function "handleDelete()"
+
+<br />
+Cliquez sur l'image ci-dessous pour être redirigée vers la vidéo Youtube présentant le Projet "CRUD" :
+
+[![texte alternatif de l'image](https://res.cloudinary.com/dky2vpnyr/image/upload/v1688510732/MyPortfolio/Project16_MERN_CRUD_Next_Auth_Admin_NextJS_13/Screenshot_from_2023-07-05_00-44-24_fz5uxq.png)](https://www.youtube.com/watch?v=Ry6IJt2_jzI&t=34s "Youtube : Présetation projet CRUD
+")
