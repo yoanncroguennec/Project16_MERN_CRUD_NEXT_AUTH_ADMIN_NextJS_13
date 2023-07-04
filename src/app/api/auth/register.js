@@ -1,6 +1,7 @@
 import nc from "next-connect";
-import dbConnect from "@/backend/config/dbConnect";
-import { registerUser } from "@/backend/controllers/authControllers";
+import dbConnect from "../server/config/db";
+import { registerUser } from "../server/controllers/AuthCtrl";
+
 
 const handler = nc();
 
